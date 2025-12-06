@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>MINIMAKER BLOCKS</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  .linktree-box {
+    max-width: 450px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align:center;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+
+  .link-btn {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    background: linear-gradient(45deg, #ff8c00, #ff3d00);
+    color:white;
+    padding:14px 20px;
+    margin:12px auto;
+    width:80%;
+    max-width:350px;
+    border-radius:12px;
+    font-size:18px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+  }
+
+  .link-btn:hover {
+    transform: scale(1.05);
+    opacity:0.9;
+  }
+
+  .profile-img {
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    border:4px solid white;
+    object-fit:cover;
+    margin-bottom:12px;
+    box-shadow:0 0 15px rgba(255,255,255,0.5);
+  }
+
+  .title2 {
+    font-size:22px;
+    color:white;
+    margin-bottom:25px;
+  }
+</style>
+
+</head>
+
+<body>
+
+<!-- navbar -->
+<iframe src="navbar.html" class="navframe" scrolling="no"></iframe>
+
+<div class="main-content">
+  <h1 class="title">Social & Contact</h1>
+
+  <!-- GLASSMORPHISM CARD -->
+  <div class="linktree-box">
+
+    <img src="img/logo.jpg" class="profile-img">
+    <h2 class="title2">MINIMAKER BLOCKS</h2>
+
+    <a href="mailto:rikorezky44@gmail.com" class="link-btn">
+        <i class="fa-solid fa-envelope"></i> Email
+    </a>
+
+    <a href="https://youtube.com/@Rikorezky" class="link-btn" target="_blank">
+        <i class="fa-brands fa-youtube"></i> YouTube
+    </a>
+
+    <a href="https://instagram.com/minimaker.blocks" class="link-btn" target="_blank">
+        <i class="fa-brands fa-instagram"></i> Instagram
+    </a>
+
+    <a href="https://facebook.com/riko.rezky" class="link-btn" target="_blank">
+        <i class="fa-brands fa-facebook"></i> Facebook
+    </a>
+
+    <a href="https://shopee.co.id/shopwithmali?categoryId=100632&entryPoint=ShopByPDP&itemId=40272553129&upstream=search" 
+       class="link-btn" 
+       target="_blank">
+       <i class="fa-solid fa-bag-shopping"></i> Shopee
+    </a>
+
+    <a href="https://wa.me/6289604248328" class="link-btn" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+    </a>
+
+</div>
+
+</div>
+
+<!-- FOOTER (ditambahkan) -->
+<footer style="margin-top: 20px; background:#8BC34A; padding:15px 0; text-align:center; color:white;">
+  <p style="margin:0; font-weight:bold;">© 2025 MINIMAKER BLOCKS. All Rights Reserved.</p>
+
+  <div style="margin-top:10px; display:flex; justify-content:center;">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7957.415815894786!2d100.361427!3d-0.865666!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b884f1bfad8f%3A0xdee4e74a07e6750d!2s59J7%2BJ75%2C%20Balai%20Gadang%2C%20Koto%20Tangah%2C%20Kota%20Padang%2C%20Sumatera%20Barat!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+      width="320" 
+      height="150" 
+      style="border:0; border-radius:8px;"
+      allowfullscreen="" 
+      loading="lazy">
+    </iframe>
+  </div>
+</footer>
+
+</body>
+</html>

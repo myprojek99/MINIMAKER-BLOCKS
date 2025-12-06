@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MINIMAKER BLOCKS</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  .main-content {
+  padding-bottom: 120px; /* menjaga footer tetap di bawah */
+}
+
+.keranjang-box {
+  margin-bottom: 10px; /* jarak aman sebelum footer */
+}
+
+  /* BOX GLASSMORPHISM */
+  .keranjang-box {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.6s ease-in-out;
+    color: white;
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+
+  /* TABLE CUSTOM */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.12);
+  }
+
+  thead {
+    background: rgba(247,147,30,0.9);
+    color: white;
+    font-weight: bold;
+  }
+
+  th, td {
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 16px;
+  }
+
+  tr:hover {
+    background: rgba(255,255,255,0.12);
+    transition: 0.3s;
+  }
+
+  /* DELETE BUTTON */
+  .btn-hapus {
+    background: #ff3d00;
+    color:white;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.25s;
+  }
+
+  .btn-hapus:hover {
+    opacity:0.8;
+    transform: scale(1.05);
+  }
+</style>
+</head>
+
+<body>
+
+<!-- navbar -->
+<iframe src="navbar.html" class="navframe" scrolling="no"></iframe>
+
+<div class="main-content">
+  <h1 class="title">Keranjang Belanja</h1>
+
+  <!-- BOX WRAPPER -->
+  <div class="keranjang-box">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Produk</th>
+          <th>Harga</th>
+          <th>Nama Pemesan</th>
+          <th>No HP</th>
+          <th>Metode</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="listKeranjang"></tbody>
+    </table>
+
+    <h2 style="margin-top:20px; text-align:center;">Total: <span id="totalHarga">Rp 0</span></h2>
+
+    <div style="margin-top:25px; text-align:center;">
+      <a href="index.html" class="btn-beli" style="padding:10px 25px;">Kembali Belanja</a>
+      <button id="checkoutBtn" class="btn-beli" style="padding:10px 25px;">Checkout</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER TAMBAHAN -->
+<footer style="background:#8BC34A; padding:20px 0; text-align:center; color:white;">
+  <p style="margin:0; font-weight:bold;">© 2025 MINIMAKER BLOCKS. All Rights Reserved.</p>
+
+  <div style="margin-top:10px; display:flex; justify-content:center; padding:0;">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7957.415815894786!2d100.361427!3d-0.865666!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b884f1bfad8f%3A0xdee4e74a07e6750d!2s59J7%2BJ75%2C%20Balai%20Gadang%2C%20Koto%20Tangah%2C%20Kota%20Padang%2C%20Sumatera%20Barat!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+      width="320" 
+      height="150" 
+      style="border:0; border-radius:8px; margin: 0 auto;"
+      allowfullscreen="" 
+      loading="lazy">
+    </iframe>
+  </div>
+</footer>
+
+
+<script>
+function loadKeranjang() {
+  let cart = JSON.parse(localStorage.getItem("keranjang")) || [];
+  let list = document.getElementById("listKeranjang");
+  let total = 0;
+
+  list.innerHTML = "";
+
+  cart.forEach((item, index) => {
+    const angkaHarga = parseInt(item.harga.replace(/[^0-9]/g, ""));
+    total += angkaHarga;
+
+    list.innerHTML += `
+      <tr>
+        <td>${item.produk}</td>
+        <td>${item.harga}</td>
+        <td>${item.nama}</td>
+        <td>${item.nohp}</td>
+        <td>${item.metode}</td>
+        <td><button class="btn-hapus" onclick="hapusItem(${index})">Hapus</button></td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("totalHarga").innerText = "Rp " + total.toLocaleString();
+}
+
+function hapusItem(i) {
+  let cart = JSON.parse(localStorage.getItem("keranjang")) || [];
+  cart.splice(i, 1);
+  localStorage.setItem("keranjang", JSON.stringify(cart));
+  loadKeranjang();
+}
+
+document.getElementById("checkoutBtn").addEventListener("click", function() {
+  alert("Checkout berhasil! Pesanan akan segera diproses.");
+  localStorage.removeItem("keranjang");
+  loadKeranjang();
+});
+
+loadKeranjang();
+</script>
+
+</body>
+</html>

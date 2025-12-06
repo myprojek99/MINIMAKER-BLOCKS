@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/logo.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="img/logo.jpg" type="image/jpeg">
+
+    <title>MINIMAKER BLOCKS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+<!-- panggil navbar -->
+<iframe src="navbar.html" class="navframe" scrolling="no"></iframe>
+
+<div class="pembelian-box">
+  <h2>Form Pembelian</h2>
+
+  <form id="formPembelian">
+    <label>Nama Produk:</label>
+    <input type="text" id="namaProduk" readonly>
+
+    <label>Harga:</label>
+    <input type="text" id="hargaProduk" readonly>
+
+    <label>Nama Lengkap:</label>
+    <input type="text" id="namaPembeli" required>
+
+    <label>Alamat Lengkap:</label>
+    <textarea id="alamat" required></textarea>
+
+    <label>No HP:</label>
+    <input type="text" id="nohp" required>
+
+    <label>Metode Pembayaran:</label>
+    <select id="metode">
+      <option>COD</option>
+      <option>Transfer Bank</option>
+      <option>E-Wallet (Dana/Gopay)</option>
+      <option>QRIS</option>
+    </select>
+
+    <button class="btn-beli" type="submit">Proses Pesanan</button>
+  </form>
+</div>
+
+<script>
+// ambil query string dari produk dan harga
+const params = new URLSearchParams(window.location.search);
+document.getElementById("namaProduk").value = params.get("produk");
+document.getElementById("hargaProduk").value = "Rp " + params.get("harga");
+
+// proses simpan ke keranjang menggunakan localStorage
+document.getElementById("formPembelian").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const item = {
+    produk: document.getElementById("namaProduk").value,
+    harga: document.getElementById("hargaProduk").value,
+    nama: document.getElementById("namaPembeli").value,
+    alamat: document.getElementById("alamat").value,
+    nohp: document.getElementById("nohp").value,
+    metode: document.getElementById("metode").value
+  };
+
+  // cek keranjang, tambah item baru
+  let cart = JSON.parse(localStorage.getItem("keranjang")) || [];
+  cart.push(item);
+  localStorage.setItem("keranjang", JSON.stringify(cart));
+
+  alert("Pesanan berhasil ditambahkan ke keranjang!");
+
+  // pindah ke halaman keranjang
+  window.location.href = "keranjang.html";
+});
+</script>
+
+</body>
+</html>
