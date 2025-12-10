@@ -6,14 +6,9 @@
 
 <style>
   .main-content {
-  padding-bottom: 120px; /* menjaga footer tetap di bawah */
-}
+    padding-bottom: 120px;
+  }
 
-.keranjang-box {
-  margin-bottom: 10px; /* jarak aman sebelum footer */
-}
-
-  /* BOX GLASSMORPHISM */
   .keranjang-box {
     max-width: 900px;
     margin: 40px auto;
@@ -32,7 +27,6 @@
     to {opacity:1; transform: translateY(0);}
   }
 
-  /* TABLE CUSTOM */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -58,7 +52,6 @@
     transition: 0.3s;
   }
 
-  /* DELETE BUTTON */
   .btn-hapus {
     background: #ff3d00;
     color:white;
@@ -68,23 +61,133 @@
     cursor:pointer;
     transition:0.25s;
   }
-
   .btn-hapus:hover {
     opacity:0.8;
     transform: scale(1.05);
+  }
+
+  .btn-checkout {
+    background: #00aaff;
+    color:white;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight: bold;
+    transition:.25s;
+  }
+  .btn-checkout:hover {
+    transform: scale(1.05);
+    opacity:.9;
+  }
+
+  /* ==========================
+       POPUP CHECKOUT
+  ========================== */
+  .popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  .popup-box {
+    background: white;
+    width: 400px;
+    padding: 20px;
+    border-radius: 12px;
+    color: black;
+    animation: fadeIn .3s ease;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .popup-box h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .btn-close {
+    background: #d32f2f;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .btn-confirm {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .qris-img {
+    width: 100%;
+    max-width: 260px;
+    max-height: 260px;
+    object-fit: contain;
+    display: block;
+    margin: 15px auto;
+    border-radius: 10px;
+  }
+
+  /* ==========================
+       DESAIN METODE TUJUAN
+  ========================== */
+  .metode-box {
+    background: #f5f5f5;
+    padding: 12px 15px;
+    border-left: 5px solid #4CAF50;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 17px;
+  }
+
+  .metode-ewallet { border-left-color: #00aaff; }
+  .metode-bank    { border-left-color: #ff9800; }
+  .metode-cod     { border-left-color: #795548; }
+
+  .nominal-box {
+    background: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    border: 2px dashed #4CAF50;
+    text-align: center;
+  }
+
+  .hidden {
+    display: none !important;
   }
 </style>
 </head>
 
 <body>
 
-<!-- navbar -->
+<!-- NAVBAR -->
 <iframe src="navbar.html" class="navframe" scrolling="no"></iframe>
 
 <div class="main-content">
   <h1 class="title">Keranjang Belanja</h1>
 
-  <!-- BOX WRAPPER -->
   <div class="keranjang-box">
 
     <table>
@@ -101,34 +204,44 @@
       <tbody id="listKeranjang"></tbody>
     </table>
 
-    <h2 style="margin-top:20px; text-align:center;">Total: <span id="totalHarga">Rp 0</span></h2>
+    <h2 style="margin-top:20px; text-align:center;">
+      Total Semua: <span id="totalHarga">Rp 0</span>
+    </h2>
 
     <div style="margin-top:25px; text-align:center;">
       <a href="index.html" class="btn-beli" style="padding:10px 25px;">Kembali Belanja</a>
-      <button id="checkoutBtn" class="btn-beli" style="padding:10px 25px;">Checkout</button>
     </div>
 
   </div>
 </div>
 
-<!-- FOOTER TAMBAHAN -->
 <footer style="background:#8BC34A; padding:20px 0; text-align:center; color:white;">
   <p style="margin:0; font-weight:bold;">© 2025 MINIMAKER BLOCKS. All Rights Reserved.</p>
-
-  <div style="margin-top:10px; display:flex; justify-content:center; padding:0;">
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7957.415815894786!2d100.361427!3d-0.865666!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4b884f1bfad8f%3A0xdee4e74a07e6750d!2s59J7%2BJ75%2C%20Balai%20Gadang%2C%20Koto%20Tangah%2C%20Kota%20Padang%2C%20Sumatera%20Barat!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
-      width="320" 
-      height="150" 
-      style="border:0; border-radius:8px; margin: 0 auto;"
-      allowfullscreen="" 
-      loading="lazy">
-    </iframe>
-  </div>
 </footer>
 
+<!-- POPUP -->
+<div class="popup-overlay" id="popupCheckout">
+  <div class="popup-box">
+    <h3>Detail Pembayaran</h3>
+
+    <p><b>Nama:</b> <span id="cNama"></span></p>
+    <p><b>Produk:</b> <span id="cProduk"></span></p>
+    <p><b>Total:</b> <span id="cTotal"></span></p>
+    <p><b>Metode:</b> <span id="cMetode"></span></p>
+
+    <img id="qrisImg" class="qris-img" src="img/qris.jpg" style="display:none;">
+
+    <div id="cTujuan"></div>
+
+    <button class="btn-confirm" id="btnConfirm">Konfirmasi Pembayaran</button>
+    <button class="btn-close" onclick="closePopup()">Tutup</button>
+  </div>
+</div>
 
 <script>
+
+let checkoutIndex = null;
+
 function loadKeranjang() {
   let cart = JSON.parse(localStorage.getItem("keranjang")) || [];
   let list = document.getElementById("listKeranjang");
@@ -137,8 +250,8 @@ function loadKeranjang() {
   list.innerHTML = "";
 
   cart.forEach((item, index) => {
-    const angkaHarga = parseInt(item.harga.replace(/[^0-9]/g, ""));
-    total += angkaHarga;
+    const angka = parseInt(item.harga.replace(/[^0-9]/g, ""));
+    total += angka;
 
     list.innerHTML += `
       <tr>
@@ -147,12 +260,15 @@ function loadKeranjang() {
         <td>${item.nama}</td>
         <td>${item.nohp}</td>
         <td>${item.metode}</td>
-        <td><button class="btn-hapus" onclick="hapusItem(${index})">Hapus</button></td>
+        <td>
+          <button class="btn-hapus" onclick="hapusItem(${index})">Hapus</button>
+          <button class="btn-checkout" onclick="openCheckout(${index})">Checkout</button>
+        </td>
       </tr>
     `;
   });
 
-  document.getElementById("totalHarga").innerText = "Rp " + total.toLocaleString();
+  document.getElementById("totalHarga").innerText = "Rp " + total.toLocaleString("id-ID");
 }
 
 function hapusItem(i) {
@@ -162,13 +278,99 @@ function hapusItem(i) {
   loadKeranjang();
 }
 
-document.getElementById("checkoutBtn").addEventListener("click", function() {
-  alert("Checkout berhasil! Pesanan akan segera diproses.");
-  localStorage.removeItem("keranjang");
-  loadKeranjang();
+function openCheckout(i) {
+  let cart = JSON.parse(localStorage.getItem("keranjang")) || [];
+  let item = cart[i];
+  checkoutIndex = i;
+
+  document.getElementById("cNama").innerText = item.nama;
+  document.getElementById("cProduk").innerText = item.produk;
+  document.getElementById("cTotal").innerText = item.harga;
+  document.getElementById("cMetode").innerText = item.metode;
+
+  const qrisImg = document.getElementById("qrisImg");
+  const tujuanBox = document.getElementById("cTujuan");
+
+  qrisImg.style.display = "none";
+  tujuanBox.classList.remove("hidden");
+
+  let tujuan = "";
+
+  // ==========================
+  // TRANSFER BANK
+  // ==========================
+  if (item.metode === "Transfer Bank") {
+    tujuan = `
+      <div class="metode-box metode-bank">
+        Transfer ke rekening berikut:
+      </div>
+      <div class="nominal-box">
+        BSI: <br> <b>7211729877</b> <br> a.n <b>Riko Rezki</b>
+      </div>
+    `;
+  }
+
+  // ==========================
+  // E-WALLET
+  // ==========================
+  else if (item.metode === "E-Wallet (Dana/Gopay)") {
+    tujuan = `
+      <div class="metode-box metode-ewallet">
+        Pembayaran via Dana / Gopay:
+      </div>
+      <div class="nominal-box">
+        <b>0896-0424-8328</b> <br>
+        (Dana • Gopay)
+      </div>
+    `;
+  }
+
+  // ==========================
+  // QRIS (ONLY IMAGE)
+  // ==========================
+  else if (item.metode === "QRIS") {
+    qrisImg.style.display = "block";
+    tujuanBox.classList.add("hidden");
+  }
+
+  // ==========================
+  // COD → Only Nominal
+  // ==========================
+  else if (item.metode === "COD") {
+    tujuan = `
+      <div class="metode-box metode-cod">
+        Bayar langsung di tempat:
+      </div>
+      <div class="nominal-box">
+        Total: <br> <b>${item.harga}</b>
+      </div>
+    `;
+  }
+
+  tujuanBox.innerHTML = tujuan;
+
+  document.getElementById("popupCheckout").style.display = "flex";
+}
+
+document.getElementById("btnConfirm").addEventListener("click", function() {
+  let cart = JSON.parse(localStorage.getItem("keranjang")) || [];
+
+  if (checkoutIndex !== null) {
+    cart.splice(checkoutIndex, 1);
+    localStorage.setItem("keranjang", JSON.stringify(cart));
+    loadKeranjang();
+  }
+
+  alert("Pembayaran Berhasil!");
+  closePopup();
 });
 
+function closePopup() {
+  document.getElementById("popupCheckout").style.display = "none";
+}
+
 loadKeranjang();
+
 </script>
 
 </body>
